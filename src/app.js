@@ -1,40 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db/connetion');
-
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/',(request,response) => {
-    db.run(`match(n) return n`)
-        .then((result)=>{
-            const value = result.records.map((record)=>{
-                return record._fields[0].properties;
-            })
-            return response.json(value);
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    
-});
-
-app.get('/:entity',(request,response) => {
-    db.run(`match(n:${request.params.entity}) return n`)
-        .then((result)=>{
-            const value = result.records.map((record)=>{
-                return record._fields[0].properties;
-            })
-            return response.json(value);
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    
-});
+app.use('/',require('./routes/create'));
+app.use('/',require('./routes/read'));
+app.use('/',require('./routes/update'));
+app.use('/',require('./routes/delete'));
 
 app.listen(8080, () => {
     console.log(`Projeto lambe-api`);
