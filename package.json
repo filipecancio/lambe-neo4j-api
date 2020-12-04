@@ -1,0 +1,8 @@
+{
+  "name": "lambe-neo4j-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:filipecancio/lambe-neo4j-api.git",
+  "author": "Cancio <filipe.cancio@outlook.com>",
+  "license": "MIT"
+}
